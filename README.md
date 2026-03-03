@@ -200,3 +200,25 @@ Styled via the native `::backdrop` pseudo-element — no extra DOM node needed:
 ## Browser support
 
 Requires native `<dialog>` support. Covered by all modern browsers (Chrome 37+, Firefox 98+, Safari 15.4+). No polyfill is included.
+
+---
+
+## Contributing
+
+Contributions are welcome! This component is intentionally minimal — but there's always room to improve it.
+
+Ideas for what to work on:
+
+- **Accessibility** — improved ARIA attributes, better screen reader announcements, focus restoration on close
+- **CSS** — additional animation directions, smoother transitions, better mobile defaults
+- **Animation** — `prefers-reduced-motion` support
+- **Features** — scroll lock, stacking multiple dialogs, drawer/sheet variant
+
+### How to contribute
+
+1. Fork the repo and work on the `dev` branch
+2. Keep changes focused — one concern per PR
+3. Test in a real browser (Chrome, Firefox, Safari)
+4. Open a pull request with a short description of what you changed and why
+
+All skill levels welcome. If you're unsure whether something fits, open an issue first.
