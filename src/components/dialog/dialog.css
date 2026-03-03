@@ -1,0 +1,91 @@
+/* ── Keyframes ─────────────────────────────────────────────────────────── */
+
+@keyframes dialog-from-top {
+  from { opacity: 0; transform: translateY(-10%) scale(0.98); }
+  to   { opacity: 1; transform: translateY(0)   scale(1);    }
+}
+
+@keyframes dialog-from-bottom {
+  from { opacity: 0; transform: translateY(10%) scale(0.98); }
+  to   { opacity: 1; transform: translateY(0)   scale(1);    }
+}
+
+@keyframes dialog-from-right {
+  from { opacity: 0; transform: translateX(100%); }
+  to   { opacity: 1; transform: translateX(0);    }
+}
+
+@keyframes dialog-from-left {
+  from { opacity: 0; transform: translateX(-100%); }
+  to   { opacity: 1; transform: translateX(0);     }
+}
+
+@keyframes backdrop-in {
+  from { background-color: transparent; }
+  to   { background-color: oklch(0.4 0.023 173 / 0.25); }
+}
+
+/* ── Native <dialog> reset + base ──────────────────────────────────────── */
+
+.modalith-dialog {
+  --dialog-width: 520px;
+  --dialog-radius: 8px;
+  --dialog-shadow: 0 3px 6px -4px rgb(0 0 0 / 0.12),
+                   0 6px 16px 0   rgb(0 0 0 / 0.08),
+                   0 9px 28px 8px rgb(0 0 0 / 0.05);
+
+  /* Reset browser defaults */
+  border: none;
+  padding: 0;
+  background: transparent;
+  color: inherit;
+  overflow: visible;
+
+  /* Sizing */
+  width: min(98vw, var(--dialog-width));
+  max-width: 100%;
+
+  /* Animation */
+  animation-duration: 280ms;
+  animation-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
+  animation-fill-mode: both;
+}
+
+/* ── Entry animations keyed off data-appear-from ───────────────────────── */
+
+.modalith-dialog[data-appear-from='top']    { animation-name: dialog-from-top;    }
+.modalith-dialog[data-appear-from='bottom'] { animation-name: dialog-from-bottom; }
+.modalith-dialog[data-appear-from='right']  { animation-name: dialog-from-right;  }
+.modalith-dialog[data-appear-from='left']   { animation-name: dialog-from-left;   }
+
+/* ── Backdrop (native ::backdrop, no extra div needed) ─────────────────── */
+
+.modalith-dialog::backdrop {
+  animation: backdrop-in 280ms ease forwards;
+  background-color: oklch(0.4 0.023 173 / 0.25);
+  backdrop-filter: blur(1px);
+}
+
+/* ── Inner content box ─────────────────────────────────────────────────── */
+
+.modalith-dialog__content {
+  background: #fff;
+  border-radius: var(--dialog-radius);
+  box-shadow: var(--dialog-shadow);
+  min-height: 140px;
+  overflow: hidden;
+}
+
+.modalith-dialog-header {
+  padding: 16px 20px;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.modalith-dialog-body {
+  padding: 20px;
+}
+
+.modalith-dialog-footer {
+  padding: 12px 20px;
+  border-top: 1px solid #f0f0f0;
+}
